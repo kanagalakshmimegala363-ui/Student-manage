@@ -1,9 +1,0 @@
-Save the Aiven CA certificate in this folder with the exact name:
-
-    aiven-ca.pem
-
-Where to get it: Aiven console -> your MySQL service -> Overview -> "CA certificate" -> Download.
-
-This certificate is PUBLIC (it only lets your app check that it is talking to Aiven).
-It is safe, and required, to upload it to GitHub so Vercel can use it.
-Do NOT put passwords in this folder.
