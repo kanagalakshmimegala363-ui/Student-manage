@@ -5,7 +5,7 @@ const LOCAL_API_URL = "http://127.0.0.1:8000/api/students/";
 
 // After you deploy the backend on Vercel, paste its address here.
 // Keep the "/api/students/" at the end.
-const PRODUCTION_API_URL = "https://YOUR-BACKEND.vercel.app/api/students/";
+const PRODUCTION_API_URL = "https://student-manage-nu.vercel.app/api/students/";
 
 // On your computer (Live Server) use the local backend.
 // On the internet (Vercel) use the production backend.
@@ -16,15 +16,15 @@ const API_URL = isLocal ? LOCAL_API_URL : PRODUCTION_API_URL;
 // =====================================================================
 // 2. PAGE ELEMENTS
 // =====================================================================
-const form      = document.getElementById("studentForm");
-const table     = document.getElementById("studentTable");
-const search    = document.getElementById("search");
-const message   = document.getElementById("message");
+const form = document.getElementById("studentForm");
+const table = document.getElementById("studentTable");
+const search = document.getElementById("search");
+const message = document.getElementById("message");
 const submitBtn = document.getElementById("submitBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 
 let allStudents = [];     // every student loaded from the server
-let editingId   = null;   // null = adding, number = editing that student
+let editingId = null;   // null = adding, number = editing that student
 
 
 // =====================================================================
@@ -43,7 +43,7 @@ function hideMessage() {
 // Shown when the backend answers but cannot use its database (HTTP 5xx)
 function serverMessage(status) {
     return "The server could not use its database (error " + status + "). " +
-           "If you use a free Aiven database it may be powered off: open the Aiven console and power it on, then try again.";
+        "If you use a free Aiven database it may be powered off: open the Aiven console and power it on, then try again.";
 }
 
 // Turns {"email": ["student with this email already exists."]} into readable text
@@ -151,15 +151,15 @@ form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const student = {
-        name:   document.getElementById("name").value.trim(),
-        email:  document.getElementById("email").value.trim(),
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
         course: document.getElementById("course").value.trim(),
-        age:    Number(document.getElementById("age").value)
+        age: Number(document.getElementById("age").value)
     };
 
     const isEditing = editingId !== null;
-    const url       = isEditing ? `${API_URL}${editingId}/` : API_URL;
-    const method    = isEditing ? "PUT" : "POST";
+    const url = isEditing ? `${API_URL}${editingId}/` : API_URL;
+    const method = isEditing ? "PUT" : "POST";
 
     try {
         const response = await fetch(url, {
@@ -192,10 +192,10 @@ form.addEventListener("submit", async function (event) {
 function startEdit(student) {
     editingId = student.id;
 
-    document.getElementById("name").value   = student.name;
-    document.getElementById("email").value  = student.email;
+    document.getElementById("name").value = student.name;
+    document.getElementById("email").value = student.email;
     document.getElementById("course").value = student.course;
-    document.getElementById("age").value    = student.age;
+    document.getElementById("age").value = student.age;
 
     submitBtn.textContent = "Update Student";
     cancelBtn.hidden = false;
