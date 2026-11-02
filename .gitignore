@@ -1,0 +1,24 @@
+# Virtual environment
+backend/venv/
+venv/
+
+# Environment files containing secrets and passwords
+backend/.env
+backend/.env.*
+!backend/.env.example
+.env
+.env.*
+!.env.example
+
+# Python cache and database files
+__pycache__/
+*.pyc
+backend/db.sqlite3
+db.sqlite3
+*.log
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
